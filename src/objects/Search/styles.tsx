@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   textPesquisa:{
     backgroundColor: colorZero,
-    width: '65%',
+    width: '85%',
     height: 45,
     borderRadius: 30,
     marginRight: 10,

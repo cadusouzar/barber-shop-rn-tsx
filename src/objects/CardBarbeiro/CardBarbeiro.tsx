@@ -17,35 +17,31 @@ export const CardBarbeiro:React.FC<PropsCardBarbeiro> = ({nomeBarbeiro, valorCor
   
   const containerBarbeiro:TextStyle  = {
     backgroundColor: colorNavTop,
-    height: userData.tipoAcesso == 'cliente' ? 190 : '100%',
+    height: userData.tipoAcesso == 'cliente' ? 190 : 245,
     width: '45%',
     alignItems: 'center',
     borderRadius: 20,
     elevation: 20,
-    margin: 7,
+    margin: 7
   }
 
   return(
   <>
     {userData.tipoAcesso == 'cliente' ? 
-      <View style={styles.container}>
-        <TouchableOpacity onPress={handlePress} style={containerBarbeiro}>
-          <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
-          <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>
-          <Text style={styles.textoBarbeiro}>{valorCorte}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={handlePress} style={containerBarbeiro}>
+        <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
+        <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>
+        <Text style={styles.textoBarbeiro}>{valorCorte}</Text>
+      </TouchableOpacity>
   :     
-      <View style={styles.container}>
-        <View style={containerBarbeiro}>
-          <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
-          <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>
-          <Text style={styles.textoBarbeiro}>{valorCorte}</Text>
-          <TouchableOpacity onPress={handlePress} style={styles.containerBarbeiroDelete}>
-            <Text style={styles.textoDelete}>Remover Barbeiro</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+    <View style={containerBarbeiro}>
+      <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
+      <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>
+      <Text style={styles.textoBarbeiro}>{valorCorte}</Text>
+      <TouchableOpacity onPress={handlePress} style={styles.containerBarbeiroDelete}>
+        <Text style={styles.textoDelete}>Remover Barbeiro</Text>
+      </TouchableOpacity>
+    </View>
     } 
   </>
 

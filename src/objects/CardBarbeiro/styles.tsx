@@ -2,11 +2,6 @@ import { StyleSheet } from "react-native";
 import { colorNavTop, colorZero } from "../../style/settings/colors";
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
   containerBarbeiroDelete:{
     backgroundColor: `red`,
     width: '70%',

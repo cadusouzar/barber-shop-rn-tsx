@@ -46,32 +46,30 @@ export const Barbeiros = () => {
   }
 
   const removerBarbeiro = (idBarbeiro:number) => {
-    const id = JSON.stringify(idBarbeiro)
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    api.post(`/Barbearia/ApagarBarbeiro/${id}`, config)
+    api.delete(`/Barbearia/ApagarBarbeiro?idFuncionario=${idBarbeiro}`)
     .then((response) => {
       alert('Barbeiro removido com sucesso!')
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      console.log(err)
+      alert('Impossivel deletar, ja existe um agendamento com esse barbeiro')
+    })
   }
 
   return (
     <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
-      style={{ marginTop: 35 }}
+    contentContainerStyle={{ flexGrow: 1 }}
+      style={{ marginTop: 35, height: '89.1%' }}
     >
-      <View style={{ marginBottom: 100 }}>
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 100}}>
         <Search onSearch={handleSearch} />
         {filteredBarbeiros.map((barbeiro) => (
-          <View key={barbeiro.id} style={{marginBottom:20}}>
-            <CardBarbeiro key={barbeiro.id} nomeBarbeiro={barbeiro.nome} valorCorte={adicionarFormatoDeReais(barbeiro.valor)} handlePress={() => removerBarbeiro(Number(barbeiro.id))}/>
-          </View>
+            <CardBarbeiro 
+            key={barbeiro.id}
+            nomeBarbeiro={barbeiro.nome} 
+            valorCorte={adicionarFormatoDeReais(barbeiro.valor)} 
+            handlePress={() => removerBarbeiro(Number(barbeiro.id))}/>
         ))}
       </View>
     </ScrollView>

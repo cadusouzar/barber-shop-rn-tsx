@@ -58,15 +58,17 @@ export const Agendar = () => {
     contentContainerStyle={{ flexGrow: 1 }}
     style={styles.containerAgendamentos}
     >
-      <Search onSearch={handleSearch} />
-      {filteredBarbeiros.map((barbeiro) => (
-        <CardBarbeiro 
-        key={barbeiro.id} 
-        nomeBarbeiro={barbeiro.nome} 
-        valorCorte={adicionarFormatoDeReais(barbeiro.valor)} 
-        handlePress={() => gotoBarbeiro(barbeiro.id, barbeiro.nome, barbeiro.telefone, barbeiro.valor)}
-        />
-      ))}
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 100}}>
+        <Search onSearch={handleSearch} />
+        {filteredBarbeiros.map((barbeiro) => (
+          <CardBarbeiro 
+          key={barbeiro.id} 
+          nomeBarbeiro={barbeiro.nome} 
+          valorCorte={adicionarFormatoDeReais(barbeiro.valor)} 
+          handlePress={() => gotoBarbeiro(barbeiro.id, barbeiro.nome, barbeiro.telefone, barbeiro.valor)}
+          />
+        ))}
+      </View>
     </ScrollView>
   )
 }
