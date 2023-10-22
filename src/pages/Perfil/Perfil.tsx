@@ -22,6 +22,11 @@ export const Perfil = () => {
     navigation.navigate('NovoBarbeiro')
   }
 
+  const meusAgendamentos = () => {
+    //@ts-ignore
+    navigation.navigate('AgendamentosCliente')
+  }
+
   function nomeFormatado(nome:string) {
     if(nome){
       const nomes = nome.split(' ');
@@ -71,7 +76,13 @@ export const Perfil = () => {
           width={250}
           />
         </>
-        : <></>} 
+        : 
+        <ButtonOpacity
+        handlePress={meusAgendamentos}
+        txtButton='Meus Agendamentos'
+        width={250}
+        />
+        } 
       <TouchableOpacity style={styles.containerSenha} onPress={TrocarSenha}>
         <Text style={styles.dadosPerfil}>Esqueceu sua senha?</Text>
       </TouchableOpacity>

@@ -5,6 +5,7 @@ import { Input } from "../../objects/Input";
 import { View } from 'react-native';
 import { backgroundMenuColor } from "../../style/settings";
 import { ButtonOpacity } from "../../objects/ButtonOpacity";
+import { api } from "../../services/api";
 
 export const MudarLocalizacao = () => {
   const [endereco, setEndereco] = useState('');
@@ -12,9 +13,34 @@ export const MudarLocalizacao = () => {
   const [longitude, setLongitude] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [telefone, setTelefone] = useState('');
-  const adicionarBarbeiro = () => {
 
+  const mudarLocalizacao = () => {
+    const localizacao = {
+      latitude: latitude,
+      longitude: longitude,
+      endereco: endereco,
+      whatsapp: whatsapp,
+      telefone: telefone
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    api.patch('/Barbearia/Barbearia', JSON.stringify(localizacao), config)
+    .then((resp) => {
+      alert('Localização e contato alterados com sucesso')
+      setEndereco('')
+      setLatitude('')
+      setLongitude('')
+      setWhatsapp('')
+      setTelefone('')
+    })
+    .catch((err) => console.log(err))
   }
+
   return(
     <KeyboardAwareScrollView
     resetScrollToCoords={{ x: 0, y: 0 }}
@@ -31,7 +57,7 @@ export const MudarLocalizacao = () => {
             value={endereco}
             onChangeText={setEndereco}
             marginTop={40}
-            secure={true}
+            tipo="numeric"
           />
           <Input
             text='Latitude'
@@ -39,7 +65,7 @@ export const MudarLocalizacao = () => {
             value={latitude}
             onChangeText={setLatitude}
             marginTop={30}
-            secure={true}
+            tipo="numeric"
           />
           <Input
             text='Longitude'
@@ -47,7 +73,7 @@ export const MudarLocalizacao = () => {
             value={longitude}
             onChangeText={setLongitude}
             marginTop={30}
-            secure={true}
+            tipo="numeric"
           />
           <Input
             text='Whatsapp'
@@ -55,7 +81,7 @@ export const MudarLocalizacao = () => {
             value={whatsapp}
             onChangeText={setWhatsapp}
             marginTop={30}
-            secure={true}
+            tipo="numeric"
           />
           <Input
             text='Telefone'
@@ -63,10 +89,10 @@ export const MudarLocalizacao = () => {
             value={telefone}
             onChangeText={setTelefone}
             marginTop={30}
-            secure={true}
+            tipo="numeric"
           />
           <View>
-            <ButtonOpacity txtButton='Mudar localização e contato' handlePress={adicionarBarbeiro} width={250}/>
+            <ButtonOpacity txtButton='Mudar localização e contato' handlePress={mudarLocalizacao} width={250}/>
           </View>
         </View>
       </View>

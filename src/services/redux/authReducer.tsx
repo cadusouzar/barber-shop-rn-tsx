@@ -7,6 +7,7 @@ export interface GenericAction<T> extends Action {
 
 const initialState = {
   userData: null,
+  localizacaoContatoData: null,
 };
 
 export const authReducer = (state = initialState, action: GenericAction<string>) => {
@@ -21,6 +22,11 @@ export const authReducer = (state = initialState, action: GenericAction<string>)
         ...state,
         userData: null,
       };
+      case 'SET_LOCALIZACAO_CONTATO_DATA':
+        return{
+          ...state,
+          localizacaoContatoData: action.payload,
+        }
     default:
       return state;
   }

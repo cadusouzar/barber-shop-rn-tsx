@@ -1,23 +1,53 @@
-import { Image, Text, TouchableOpacity, View } from "react-native"
+import { Image, Text, TextStyle, TouchableOpacity, View } from "react-native"
 import styles from './styles'
 //@ts-ignore
 import ImagePerfil from '../../images/perfil.png'
-import { useNavigation } from "@react-navigation/native"; 
+import { useSelector } from "react-redux";
+import { RootState } from "services/redux/store";
+import { colorNavTop } from "../../style/settings";
 
-export const CardBarbeiro = () => {
-  const navigation = useNavigation(); 
+type PropsCardBarbeiro = {
+  nomeBarbeiro: string
+  valorCorte: string
+  handlePress?: () => void
+}
+
+export const CardBarbeiro:React.FC<PropsCardBarbeiro> = ({nomeBarbeiro, valorCorte, handlePress}) => {
+  const userData = useSelector((state: RootState) => state.auth.userData)
   
-  const gotoBarbeiro = () => {
-    //@ts-ignore
-    navigation.navigate('Barbeiro')
+  const containerBarbeiro:TextStyle  = {
+    backgroundColor: colorNavTop,
+    height: userData.tipoAcesso == 'cliente' ? 190 : '100%',
+    width: '45%',
+    alignItems: 'center',
+    borderRadius: 20,
+    elevation: 20,
+    margin: 7,
   }
+
   return(
-    <View style={styles.container}>
-      <TouchableOpacity onPress={gotoBarbeiro} style={styles.containerBarbeiro}>
-        <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
-        <Text style={styles.textoBarbeiro}>Carlos Eduardo</Text>
-        <Text style={styles.textoBarbeiro}>R$ 30,00</Text>
-      </TouchableOpacity>
-    </View>
+  <>
+    {userData.tipoAcesso == 'cliente' ? 
+      <View style={styles.container}>
+        <TouchableOpacity onPress={handlePress} style={containerBarbeiro}>
+          <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
+          <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>
+          <Text style={styles.textoBarbeiro}>{valorCorte}</Text>
+        </TouchableOpacity>
+      </View>
+  :     
+      <View style={styles.container}>
+        <View style={containerBarbeiro}>
+          <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
+          <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>
+          <Text style={styles.textoBarbeiro}>{valorCorte}</Text>
+          <TouchableOpacity onPress={handlePress} style={styles.containerBarbeiroDelete}>
+            <Text style={styles.textoDelete}>Remover Barbeiro</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    } 
+  </>
+
   )
 }

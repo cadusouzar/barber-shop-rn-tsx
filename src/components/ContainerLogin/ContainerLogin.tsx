@@ -34,6 +34,7 @@ export const ContainerLogin: React.FC<PropsContainerLogin> = ({
           onChangeText={HandleLogin} // Passa o novo valor diretamente para a função HandleLogin
           value={LoginValue}
           marginTop={-10}
+          numeroMaximo={11}
         />
 
         <Input
@@ -43,6 +44,7 @@ export const ContainerLogin: React.FC<PropsContainerLogin> = ({
           value={PasswordValue}
           marginTop={20}
           secure={true}
+          numeroMaximo={11}
         />
         <View style={styles.ContainerButtons}>
           <View style={styles.ButtonLogin}>

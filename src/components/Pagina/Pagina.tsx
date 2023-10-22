@@ -7,10 +7,11 @@ import { Localizacao } from "../../pages/Localização";
 import { Home } from "../../pages/Home";
 import { Creditos } from "../../pages/Creditos";
 import {  Perfil } from "../../pages/Perfil";
-import { Agendamentos } from "../../pages/Agendamentos";
+import { Agendar } from "../../pages/Agendar";
 //@ts-ignore
 import Menu from '../../images/Menu.png'
 import { Barbeiros } from "../../pages/Barbeiros/Barbeiros";
+import { TodosAgendamentos } from "../../pages/TodosAgendamentos";
 
 type PropsPagina = {
   PaginaAtual: string
@@ -81,14 +82,16 @@ export const Pagina: React.FC<PropsPagina> = ({ PaginaAtual }) => {
           <Perfil/>  : 
           PaginaAtual == 'Home' ?
           <Home/> :
-          PaginaAtual == 'Agendamentos' ?
-          <Agendamentos/> :
+          PaginaAtual == 'Agendar' ?
+          <Agendar/> :
           PaginaAtual == 'Localização e contato' ? 
           <Localizacao/> : 
           PaginaAtual == 'Créditos' ?
           <Creditos/> :
           PaginaAtual == 'Barbeiros' ?
           <Barbeiros/> :
+          PaginaAtual == 'Agendamentos' ?
+          <TodosAgendamentos/> :
           <></>
         }
       </Animated.View>

@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import {useState} from 'react';
 import { backgroundMenuColor } from '../../style/settings';
 import { ButtonOpacity } from '../../objects/ButtonOpacity';
+import { api } from '../../services/api';
 
 
 
@@ -13,7 +14,25 @@ export const NovoBarbeiro = () => {
   const [telefoneBarbeiro, setTelefoneBarbeiro] = useState('');
   const [valorCorte, setValorCorte] = useState('');
   const adicionarBarbeiro = () => {
+    const barbeiro = {
+      nome: nomeBarbeiro,
+      telefone: telefoneBarbeiro,
+      valor: valorCorte
+    }
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
+    api.post('/Barbearia/RegistrarBarbeiro', JSON.stringify(barbeiro), config)
+    .then((resp) => {
+        alert('Barbeiro adicionado com sucesso!')
+        setNomeBarbeiro('')
+        setTelefoneBarbeiro('')
+        setValorCorte('')
+    })
+    .catch((err) => console.log(err))
   }
   return(
     <KeyboardAwareScrollView
@@ -31,7 +50,6 @@ export const NovoBarbeiro = () => {
             value={nomeBarbeiro}
             onChangeText={setNomeBarbeiro}
             marginTop={70}
-            secure={true}
           />
           <Input
             text='Telefone'
@@ -39,7 +57,8 @@ export const NovoBarbeiro = () => {
             value={telefoneBarbeiro}
             onChangeText={setTelefoneBarbeiro}
             marginTop={30}
-            secure={true}
+            tipo='numeric'
+            numeroMaximo={11}
           />
           <Input
             text='Valor do corte'
@@ -47,7 +66,8 @@ export const NovoBarbeiro = () => {
             value={valorCorte}
             onChangeText={setValorCorte}
             marginTop={30}
-            secure={true}
+            tipo='numeric'
+            numeroMaximo={2}
           />
           <View>
             <ButtonOpacity txtButton='Adicionar Barbeiro' handlePress={adicionarBarbeiro} width={250}/>

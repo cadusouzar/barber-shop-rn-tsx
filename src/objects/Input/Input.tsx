@@ -9,9 +9,11 @@ type PropsInput = {
   value: string
   marginTop?: number
   secure?: boolean
+  tipo?: string
+  numeroMaximo?: number
 }
 
-export const Input: React.FC<PropsInput> = ({ text, placeholder, onChangeText, value, marginTop, secure }) => {
+export const Input: React.FC<PropsInput> = ({ text, placeholder, onChangeText, value, marginTop, secure, tipo, numeroMaximo }) => {
   const inputTextStyle: TextStyle = {
     textAlign: "center",
     fontSize: 16,
@@ -30,6 +32,8 @@ export const Input: React.FC<PropsInput> = ({ text, placeholder, onChangeText, v
         value={value}
         style={styles.Input}
         secureTextEntry={secure}
+        keyboardType={tipo}
+        maxLength={numeroMaximo}
       />
     </View>
   )

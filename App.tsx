@@ -11,6 +11,8 @@ import { TrocarSenha } from './src/pages/TrocarSenha';
 import { NovoBarbeiro } from './src/pages/NovoBarbeiro';
 import store from './src/services/redux/store'
 import { MudarLocalizacao } from './src/pages/MudarLocalizacao';
+import { Agendar } from './src/pages/Agendar';
+import { AgendamentosCliente } from './src/pages/AgendamentosCliente/AgendamentosCliente';
 
 
 const Stack = createNativeStackNavigator();
@@ -61,6 +63,16 @@ export default function App() {
           <Stack.Screen
           name='MudarLocalizacao'
           component={MudarLocalizacao}
+          options={{headerShown: false}}
+          />
+          <Stack.Screen
+          name='Agendar'
+          component={Agendar}
+          options={{headerShown: false}}
+          />
+          <Stack.Screen
+          name='AgendamentosCliente'
+          component={AgendamentosCliente}
           options={{headerShown: false}}
           />
         </Stack.Navigator>

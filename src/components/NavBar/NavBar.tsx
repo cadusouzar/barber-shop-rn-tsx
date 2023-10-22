@@ -8,8 +8,10 @@ import { useNavigation } from "@react-navigation/native";
 //@ts-ignore
 import ImagePerfil from '../../images/perfil.png'
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../services/redux/store";
-import { logoutUser } from "../../services/redux/actions";
+import store, { RootState } from "../../services/redux/store";
+import { logoutUser, setLocalizacaoContato } from "../../services/redux/actions";
+import { api } from "../../services/api";
+import {useEffect} from 'react';
 
 type PropsNavBar = {
   setCurrentTab: React.Dispatch<React.SetStateAction<string>>;
@@ -49,7 +51,9 @@ export const NavBar:React.FC<PropsNavBar> = ({setCurrentTab, currentTab}) => {
 
       <View style={{flexGrow: 1, marginTop: 50}}>
         {TabButton(currentTab, setCurrentTab, "Home", "home-button", "material-design")}
-        {TabButton(currentTab, setCurrentTab, "Agendamentos", "calendar", "miscellaneous")}
+        {userData.tipoAcesso == 'barbearia' ? 
+            TabButton(currentTab, setCurrentTab, "Agendamentos", "calendar", "miscellaneous")
+        : TabButton(currentTab, setCurrentTab, "Agendar", "calendar", "miscellaneous")} 
         {TabButton(currentTab, setCurrentTab, "Localização e contato", "gps-fixed-indicator", "material-design")}
         {TabButton(currentTab, setCurrentTab, "Créditos", "framed-portrait", "material-design")}
         {userData.tipoAcesso == 'barbearia' ? 

@@ -6,19 +6,59 @@ import {  backgroundMenuColor } from "../../style/settings"
 import ImagePerfil from '../../images/perfil.png'
 import styles from './styles';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { addMonths, format } from 'date-fns';
-import { ptBR } from "date-fns/locale";
+import { addMonths } from 'date-fns';
+import { useRoute } from '@react-navigation/native';
+import { api } from "../../services/api"
+import { useSelector } from "react-redux"
+import { RootState } from "services/redux/store"
+import { PagamentoModal } from "../../pages/PagamentoModal"
 
 export const Barbeiro = () => {
+  const userData = useSelector((state: RootState) => state.auth.userData)
   const dataAtual = new Date()
   const [date, setDate] = useState(new Date())
   const [show, setShow] = useState(false)
   const [mode, setMode] = useState<'date' | 'time'>('date');
   const dataAtualMaisUmMes = addMonths( dataAtual, 1)
+  const route = useRoute();
+  const barbeiroId = (route.params as { barbeiroId: string })?.barbeiroId;
+  const barbeiroNome = (route.params as { barbeiroNome: string })?.barbeiroNome;
+  const barbeiroTelefone = (route.params as { barbeiroTelefone: string })?.barbeiroTelefone;
+  const barbeiroValor = (route.params as { barbeiroValor: string })?.barbeiroValor;
 
-  const Agendar  = (data:Date) => {
-    const DataFormatada = format(data, "dd/MM/yyyy HH:mm", { locale: ptBR })
-    console.log(DataFormatada)
+  function nomeFormatado(nome:string) {
+    if(nome){
+      const nomes = nome.split(' ');
+    
+      if (nomes.length >= 2) {
+        const primeiroNome = nomes[0].charAt(0).toUpperCase() + nomes[0].slice(1).toLowerCase();
+        const segundoNome = nomes[1].charAt(0).toUpperCase() + nomes[1].slice(1).toLowerCase();
+
+        return `${primeiroNome} ${segundoNome}`;
+      } else {
+        return nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase();
+      }
+    }
+  }
+
+  function formatarTelefoneComParentesesEDeTraco(telefone: string) {
+    const numeroNumerico = telefone.replace(/\D/g, '');
+  
+    if (numeroNumerico.length < 10) {
+      return telefone;
+    }
+  
+    const ddd = numeroNumerico.substring(0, 2);
+    const restanteDoNumero = numeroNumerico.substring(2);
+  
+    const telefoneFormatado = `(${ddd}) ${restanteDoNumero.substring(0, 5)}-${restanteDoNumero.substring(5)}`;
+  
+    return telefoneFormatado;
+  }
+
+  const Agendar  = () => {
+
+
   }
   
   const onChange = (e: any, selectedDate?: Date) => {
@@ -39,8 +79,8 @@ export const Barbeiro = () => {
       <View style={styles.containerPerfil}>
         <View style={styles.Perfil}>
           <Image source={ImagePerfil} style={styles.fotoPerfil} />
-          <Text style={styles.nomePerfil}>Nome aqui bla bla bla</Text>
-          <Text style={styles.dadosPerfil}>Numero de telefone</Text>
+          <Text style={styles.nomePerfil}>{nomeFormatado(barbeiroNome)}</Text>
+          <Text style={styles.dadosPerfil}>{formatarTelefoneComParentesesEDeTraco(barbeiroTelefone)}</Text>
         </View>
       </View>
 
@@ -65,9 +105,7 @@ export const Barbeiro = () => {
       )}
 
       <View style={styles.containerButton}>
-        <TouchableOpacity onPress={() => Agendar(date)} style={styles.Button}>
-          <Text style={styles.textButton}>Agendar</Text>
-        </TouchableOpacity>
+        <PagamentoModal idBarbeiro={barbeiroId} idUsuario={userData.id} dataCorte={date} cpf={userData.cpf} valor={barbeiroValor}/>
       </View>
     </View>
   )

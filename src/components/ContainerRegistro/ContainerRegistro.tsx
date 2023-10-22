@@ -18,23 +18,7 @@ export const ContainerRegistro = () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     return emailRegex.test(email);
   }
-    
-  const formatCPF = (input:string) => {
-    const numericInput = input.replace(/\D/g, '');
-  
-    const formattedCPF =
-      numericInput
-        .slice(0, 3) +
-      '.' +
-      numericInput.slice(3, 6) +
-      '.' +
-      numericInput.slice(6, 9) +
-      '-' +
-      numericInput.slice(9, 11);
-  
-    return formattedCPF;
-  };
-  
+      
   const Registrar = () => {
     const usuario = {
       nome,
@@ -104,7 +88,7 @@ export const ContainerRegistro = () => {
         placeholder='Digite seu CPF'
         value={cpf}
         marginTop={20}
-        onChangeText={text => setCpf(formatCPF(text))}
+        onChangeText={text => setCpf(text)}
       />
       <Input
         text='E-mail'

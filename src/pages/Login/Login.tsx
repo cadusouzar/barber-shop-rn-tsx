@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { api } from "../../services/api";
 import { useDispatch } from 'react-redux';
 import { setUserData } from "../../services/redux/actions";
+import useEffect from 'react';
 
 export const Login = () => {
   const [login, setLogin] = useState("");
@@ -34,22 +35,6 @@ export const Login = () => {
       .catch((err) => console.log(err));
   };
 
-  const formatCPF = (input:string) => {
-    const numericInput = input.replace(/\D/g, '');
-  
-    const formattedCPF =
-      numericInput
-        .slice(0, 3) +
-      '.' +
-      numericInput.slice(3, 6) +
-      '.' +
-      numericInput.slice(6, 9) +
-      '-' +
-      numericInput.slice(9, 11);
-  
-    return formattedCPF;
-  };
-
   const goRegister = () => {
     //@ts-ignore
     navigation.navigate('Registro')
@@ -63,7 +48,7 @@ export const Login = () => {
       style={styles.Background}
     >
       <ContainerLogin
-        HandleLogin={(text) => setLogin(formatCPF(text))}
+        HandleLogin={(text) => setLogin(text)}
         HandlePassword={setPassword}
         Login={goLogin}
         Register={goRegister}

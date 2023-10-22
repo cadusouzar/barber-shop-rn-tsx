@@ -7,14 +7,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
-  containerBarbeiro:{
-    backgroundColor: colorNavTop,
-    height: 190,
-    width: '45%',
+  containerBarbeiroDelete:{
+    backgroundColor: `red`,
+    width: '70%',
+    height: 47,
     alignItems: 'center',
     borderRadius: 20,
-    elevation: 20,
-    margin: 7,
+    marginTop: 10
   },
   imagePerfilBarbeiro:{
     width: 80,
@@ -27,6 +26,12 @@ const styles = StyleSheet.create({
     color: colorZero,
     marginTop: 10
   },
+  textoDelete:{
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 17,
+    color: colorZero,
+    textAlign: 'center'
+  }
 });
 
 export default styles
