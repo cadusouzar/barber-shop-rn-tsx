@@ -31,7 +31,7 @@ export const AgendamentosCliente = () => {
 
   useEffect(() => {
     api
-      .get(`/Agendamento/ListarPorUsuario?cpf=${userData.cpf}`)
+      .get(`/Agendamento/ListarPorUsuario?cpf=${userData?.cpf}`)
       .then((resp) => {
         const cortesData = resp.data;
         cortesData.sort((a: meusCortesData, b: meusCortesData) => {

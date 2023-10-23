@@ -105,7 +105,7 @@ export const Barbeiro = () => {
       )}
 
       <View style={styles.containerButton}>
-        <PagamentoModal idBarbeiro={barbeiroId} idUsuario={userData.id} dataCorte={date} cpf={userData.cpf} valor={barbeiroValor}/>
+        <PagamentoModal idBarbeiro={barbeiroId} idUsuario={userData?.id} dataCorte={date} cpf={userData?.cpf} valor={barbeiroValor}/>
       </View>
     </View>
   )

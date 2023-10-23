@@ -18,7 +18,7 @@ export const TrocarSenha = () => {
 
   const trocarSenha = () => {
     const usuario={
-      cpf: userData.cpf,
+      cpf: userData?.cpf,
       senha: novaSenha
     }
 

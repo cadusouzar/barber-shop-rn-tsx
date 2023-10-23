@@ -14,13 +14,13 @@ export const Login = () => {
   const navigation = useNavigation(); 
   const dispatch = useDispatch();
 
-  const goLogin = () => {
+  const goLogin = async () => {
     if (!login || !password) {
       alert("Login e Senha não coincidem");
       return;
     }
     const url = `/Usuario/Login?cpf=${login}&senha=${password}`;
-    api.get(url)
+    await api.get(url)
       .then((resp) => {
         if(resp.data){
         dispatch(setUserData(resp.data)); 

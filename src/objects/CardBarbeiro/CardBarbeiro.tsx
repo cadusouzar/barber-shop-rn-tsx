@@ -17,7 +17,7 @@ export const CardBarbeiro:React.FC<PropsCardBarbeiro> = ({nomeBarbeiro, valorCor
   
   const containerBarbeiro:TextStyle  = {
     backgroundColor: colorNavTop,
-    height: userData.tipoAcesso == 'cliente' ? 190 : 245,
+    height: userData?.tipoAcesso == 'cliente' ? 190 : 245,
     width: '45%',
     alignItems: 'center',
     borderRadius: 20,
@@ -27,7 +27,7 @@ export const CardBarbeiro:React.FC<PropsCardBarbeiro> = ({nomeBarbeiro, valorCor
 
   return(
   <>
-    {userData.tipoAcesso == 'cliente' ? 
+    {userData?.tipoAcesso == 'cliente' ? 
       <TouchableOpacity onPress={handlePress} style={containerBarbeiro}>
         <Image source={ImagePerfil} style={styles.imagePerfilBarbeiro}/>
         <Text style={styles.textoBarbeiro}>{nomeBarbeiro}</Text>

@@ -23,13 +23,14 @@ export const BemVindo = () => {
         return nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase();
       }
     }
+    return ''
   }
 
   return(
     <View style={{alignItems: 'center'}}>
       <View style={styles.containerTextNome}>
         <Text style={styles.texts}>{Texts.Hello}</Text>
-        <Text style={styles.textNome}>{nomeFormatado(userData.nome)}</Text>
+        <Text style={styles.textNome}>{nomeFormatado(userData?.nome)}</Text>
       </View>
       <View style={styles.containerTextNome}>
         <Text style={styles.texts}>{Texts.BemVindo}</Text>

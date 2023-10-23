@@ -14,7 +14,6 @@ import { MudarLocalizacao } from './src/pages/MudarLocalizacao';
 import { Agendar } from './src/pages/Agendar';
 import { AgendamentosCliente } from './src/pages/AgendamentosCliente/AgendamentosCliente';
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {

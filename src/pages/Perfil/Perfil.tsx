@@ -60,10 +60,10 @@ export const Perfil = () => {
     <View style={styles.containerPerfil}>
       <View style={styles.Perfil}>
         <Image source={ImagePerfil} style={styles.fotoPerfil} />
-        <Text style={styles.nomePerfil}>{nomeFormatado(userData.nome)}</Text>
-        <Text style={styles.dadosPerfil}>{formatCPF(userData.cpf)}</Text>
+        <Text style={styles.nomePerfil}>{nomeFormatado(userData?.nome)}</Text>
+        <Text style={styles.dadosPerfil}>{formatCPF(userData?.cpf)}</Text>
       </View>
-      {userData.tipoAcesso == 'barbearia' ? 
+      {userData?.tipoAcesso == 'barbearia' ? 
         <>
           <ButtonOpacity
           handlePress={mudarLocalizacao}

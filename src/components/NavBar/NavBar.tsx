@@ -42,7 +42,7 @@ export const NavBar:React.FC<PropsNavBar> = ({setCurrentTab, currentTab}) => {
         marginTop: 20
       }} />
       <View style={{width: '50%'}}>
-        <Text style={styles.Text}>{nomeCompleto(userData.nome)}</Text>
+        <Text style={styles.Text}>{nomeCompleto(userData?.nome)}</Text>
       </View>
 
       <TouchableOpacity>
@@ -51,12 +51,12 @@ export const NavBar:React.FC<PropsNavBar> = ({setCurrentTab, currentTab}) => {
 
       <View style={{flexGrow: 1, marginTop: 50}}>
         {TabButton(currentTab, setCurrentTab, "Home", "home-button", "material-design")}
-        {userData.tipoAcesso == 'barbearia' ? 
+        {userData?.tipoAcesso == 'barbearia' ? 
             TabButton(currentTab, setCurrentTab, "Agendamentos", "calendar", "miscellaneous")
         : TabButton(currentTab, setCurrentTab, "Agendar", "calendar", "miscellaneous")} 
         {TabButton(currentTab, setCurrentTab, "Localização e contato", "gps-fixed-indicator", "material-design")}
         {TabButton(currentTab, setCurrentTab, "Créditos", "framed-portrait", "material-design")}
-        {userData.tipoAcesso == 'barbearia' ? 
+        {userData?.tipoAcesso == 'barbearia' ? 
             TabButton(currentTab, setCurrentTab, "Barbeiros", "barber-pole", "emojione-emojis-mono")
         : <></>} 
         
