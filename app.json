@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Barber-Shop",
-    "slug": "Barber-Shop",
+    "slug": "barber-shop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,8 +29,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "bb6ad37e-f1cb-49c6-ade0-cfd276459630"
+        "projectId": "0459182a-6b53-4b4b-9fdd-168dfc88687c"
       }
-    }
+    },
+    "owner": "cadusouzar"
   }
 }
